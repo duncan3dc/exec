@@ -4,8 +4,10 @@ namespace duncan3dc\ExecTests;
 
 use duncan3dc\Exec\Exceptions\ProgramException;
 use duncan3dc\Exec\Output\OutputInterface;
+use duncan3dc\Exec\Output\Silent;
 use duncan3dc\Exec\Program;
 use duncan3dc\Mock\CoreFunction;
+use duncan3dc\ObjectIntruder\Intruder;
 use Mockery;
 use Mockery\MockInterface;
 use PHPUnit\Framework\TestCase;
@@ -42,6 +44,14 @@ class ProgramTest extends TestCase
             $param = $result;
             return true;
         });
+    }
+
+
+    public function testWithoutOutput(): void
+    {
+        $program = Program::withoutOutput("silent");
+        $program = new Intruder($program);
+        $this->assertInstanceOf(Silent::class, $program->output);
     }
 
 

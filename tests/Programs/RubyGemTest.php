@@ -4,6 +4,7 @@ namespace duncan3dc\ExecTests\Programs;
 
 use duncan3dc\Exec\Exceptions\RubyGemException;
 use duncan3dc\Exec\Output\OutputInterface;
+use duncan3dc\Exec\Output\Silent;
 use duncan3dc\Exec\ProgramInterface;
 use duncan3dc\Exec\Programs\RubyGem;
 use duncan3dc\Exec\ResultInterface;
@@ -40,6 +41,15 @@ class RubyGemTest extends TestCase
     public function tearDown()
     {
         Mockery::close();
+    }
+
+
+    public function testWithoutOutput(): void
+    {
+        $gem = RubyGem::withoutOutput("silent-gem");
+        $gem = new Intruder($gem);
+        $program = new Intruder($gem->program);
+        $this->assertInstanceOf(Silent::class, $program->output);
     }
 
 

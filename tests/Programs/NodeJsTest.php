@@ -4,6 +4,7 @@ namespace duncan3dc\ExecTests\Programs;
 
 use duncan3dc\Exec\Exceptions\NodeJsException;
 use duncan3dc\Exec\Output\OutputInterface;
+use duncan3dc\Exec\Output\Silent;
 use duncan3dc\Exec\ProgramInterface;
 use duncan3dc\Exec\Programs\NodeJs;
 use duncan3dc\Exec\ResultInterface;
@@ -40,6 +41,15 @@ class NodeJsTest extends TestCase
     public function tearDown()
     {
         Mockery::close();
+    }
+
+
+    public function testWithoutOutput(): void
+    {
+        $node = NodeJs::withoutOutput("silent-module");
+        $node = new Intruder($node);
+        $program = new Intruder($node->program);
+        $this->assertInstanceOf(Silent::class, $program->output);
     }
 
 

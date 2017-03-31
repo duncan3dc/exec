@@ -4,6 +4,7 @@ namespace duncan3dc\Exec\Programs;
 
 use duncan3dc\Exec\Exceptions\ComposerException;
 use duncan3dc\Exec\Output\OutputInterface;
+use duncan3dc\Exec\Output\Silent;
 use duncan3dc\Exec\Program;
 use duncan3dc\Exec\ProgramInterface;
 use duncan3dc\Exec\ResultInterface;
@@ -15,6 +16,17 @@ final class Composer implements ProgramInterface
      * @var ProgramInterface $program The program instance to run our commands.
      */
     private $program;
+
+
+    /**
+     * Create a new instance that doesn't output anything.
+     *
+     * @return self
+     */
+    public static function withoutOutput(): self
+    {
+        return new self(new Silent());
+    }
 
 
     /**
