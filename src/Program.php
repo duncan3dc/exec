@@ -4,6 +4,7 @@ namespace duncan3dc\Exec;
 
 use duncan3dc\Exec\Exceptions\ProgramException;
 use duncan3dc\Exec\Output\OutputInterface;
+use duncan3dc\Exec\Output\Silent;
 use function escapeshellarg;
 use function exec;
 use function trim;
@@ -39,6 +40,19 @@ final class Program implements ProgramInterface
      * @var bool|null $installed Whether this program is installed or not.
      */
     private $installed;
+
+
+    /**
+     * Create a new instance that doesn't output anything.
+     *
+     * @param string $program The name of the program to run
+     *
+     * @return self
+     */
+    public static function withoutOutput(string $program): self
+    {
+        return new self($program, new Silent());
+    }
 
 
     /**

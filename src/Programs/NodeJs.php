@@ -4,6 +4,7 @@ namespace duncan3dc\Exec\Programs;
 
 use duncan3dc\Exec\Exceptions\NodeJsException;
 use duncan3dc\Exec\Output\OutputInterface;
+use duncan3dc\Exec\Output\Silent;
 use duncan3dc\Exec\Program;
 use duncan3dc\Exec\ProgramInterface;
 use duncan3dc\Exec\ResultInterface;
@@ -19,6 +20,19 @@ final class NodeJs implements ProgramInterface
      * @var string $module The name of the npm module to run.
      */
     private $module;
+
+
+    /**
+     * Create a new instance that doesn't output anything.
+     *
+     * @param string $module The name of the npm module to run
+     *
+     * @return self
+     */
+    public static function withoutOutput(string $module): self
+    {
+        return new self($module, new Silent());
+    }
 
 
     /**
