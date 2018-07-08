@@ -12,6 +12,7 @@
         "role": "Developer"
     }],
     "require": {
+        "symfony/console": "^3.4|^4.2",
         "ext-mbstring": "*",
         "php": "^7.1"
     },
