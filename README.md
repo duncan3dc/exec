@@ -13,6 +13,30 @@ PHPDoc API documentation is also available at [http://duncan3dc.github.io/exec/a
 A [Changelog](CHANGELOG.md) has been available since the beginning of time
 
 
+Quick Examples
+--------------
+
+```php
+$session = new \duncan3dc\Sessions\SessionInstance("my-app");
+$session->set("current-status", 4);
+$currentStatus = $session->get("current-status");
+```
+
+```php
+$composer = new Composer($output);
+            $composer->setPath($path);
+            $composer->env("COMPOSER", $tmp);
+            $composer->exec("update");
+```
+
+_Read more at http://duncan3dc.github.io/sessions/_  
+
+
+Changelog
+---------
+A [Changelog](CHANGELOG.md) has been available since the beginning of time
+
+
 ## Where to get help
 Found a bug? Got a question? Just not sure how something works?  
 Please [create an issue](//github.com/duncan3dc/exec/issues) and I'll do my best to help out.  
