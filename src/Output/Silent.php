@@ -16,6 +16,14 @@ final class Silent implements OutputInterface
     /**
      * @inheritDoc
      */
+    public function env(string $key, string $value, string $color): void
+    {
+    }
+
+
+    /**
+     * @inheritDoc
+     */
     public function output(string $line, string $color): void
     {
     }

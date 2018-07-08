@@ -30,6 +30,11 @@ final class Program implements ProgramInterface
      */
     private $path;
 
+    /**
+     * @var array $env The environment variables to set for the program.
+     */
+    private $env = [];
+
 
     /**
      * Create a new instance.
@@ -69,6 +74,17 @@ final class Program implements ProgramInterface
     /**
      * @inheritDoc
      */
+    public function withEnv(string $key, string $value): ProgramInterface
+    {
+        $program = clone $this;
+        $program->env[$key] = $value;
+        return $program;
+    }
+
+
+    /**
+     * @inheritDoc
+     */
     public function getResult(string ...$arguments): ResultInterface
     {
         if ($this->path !== null) {
@@ -84,7 +100,13 @@ final class Program implements ProgramInterface
         $this->output->command($command, $this->color);
         $this->output->break($this->color);
 
-        $exec = trim($command);
+        $env = "";
+        foreach ($this->env as $key => $value) {
+            $env .= "{$key}={$value} ";
+            $this->output->env($key, $value, $this->color);
+        }
+
+        $exec = trim(trim($env) . " {$command}");
         exec("{$exec} 2>&1", $lines, $status);
 
         $first = true;

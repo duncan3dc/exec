@@ -49,6 +49,7 @@ class ProgramTest extends TestCase
     {
         $this->output->shouldReceive("command");
         $this->output->shouldReceive("break");
+        $this->output->shouldReceive("env");
         $this->output->shouldReceive("output");
         $this->output->shouldReceive("end");
     }
@@ -105,6 +106,20 @@ class ProgramTest extends TestCase
         $this->assertNotSame($this->program, $program);
 
         $this->ignoreOutput();
+        $program->exec();
+    }
+
+
+    public function testWithEnv()
+    {
+        $this->ignoreOutput();
+
+        CoreFunction::mock("exec")
+            ->with("TEST=yep MORE=ok ls 2>&1", $this->mock(["line1"]), $this->mock(0));
+
+        $program = $this->program->withEnv("TEST", "yep")->withEnv("MORE", "ok");
+        $this->assertNotSame($this->program, $program);
+
         $program->exec();
     }
 

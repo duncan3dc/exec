@@ -15,6 +15,17 @@ interface OutputInterface
     public function command(string $command, string $color): void;
 
     /**
+     * Output an environment variable.
+     *
+     * @param string $key The environment variable
+     * @param string $value The value the variable is set to
+     * @param string $color The name of the colour to output in
+     *
+     * @return void
+     */
+    public function env(string $key, string $value, string $color): void;
+
+    /**
      * Output a line of the command's output.
      *
      * @param string $line The line to output

@@ -26,6 +26,13 @@ class PlainTest extends TestCase
     }
 
 
+    public function testEnv()
+    {
+        $this->expectOutputString("\t[TEST = yep]\n");
+        $this->output->env("TEST", "yep", "blue");
+    }
+
+
     public function testOutput()
     {
         $this->expectOutputString("\tline1");

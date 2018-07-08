@@ -17,6 +17,15 @@ final class Plain implements OutputInterface
     /**
      * @inheritDoc
      */
+    public function env(string $key, string $value, string $color): void
+    {
+        echo "\t[{$key} = {$value}]\n";
+    }
+
+
+    /**
+     * @inheritDoc
+     */
     public function output(string $line, string $color): void
     {
         echo "\t{$line}";

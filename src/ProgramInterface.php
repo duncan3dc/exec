@@ -28,6 +28,17 @@ interface ProgramInterface
 
 
     /**
+     * Get a new instance with an environment variable set.
+     *
+     * @param string $key The environmment variable to set
+     * @param string $value The value to set
+     *
+     * @return ProgramInterface
+     */
+    public function withEnv(string $key, string $value): ProgramInterface;
+
+
+    /**
      * Execute a command and return its output (ignoring any errors).
      *
      * @param string ...$arguments Any additional arguments to pass to the command

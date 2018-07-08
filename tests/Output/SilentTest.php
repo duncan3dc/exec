@@ -26,6 +26,13 @@ class SilentTest extends TestCase
     }
 
 
+    public function testEnv()
+    {
+        $this->expectOutputString("");
+        $this->output->env("TEST", "yep", "blue");
+    }
+
+
     public function testOutput()
     {
         $this->expectOutputString("");
