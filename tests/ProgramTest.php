@@ -174,4 +174,20 @@ class ProgramTest extends TestCase
         $this->expectExceptionMessage("The ls command failed (exit code: 14)");
         $this->program->exec();
     }
+
+
+    public function testIsInstalled1()
+    {
+        $this->ignoreOutput();
+
+        $this->assertTrue($this->program->isInstalled());
+        $this->assertTrue($this->program->isInstalled());
+    }
+    public function testIsInstalled2()
+    {
+        $this->ignoreOutput();
+
+        $program = new Program("no-such-program", $this->output);
+        $this->assertFalse($program->isInstalled());
+    }
 }

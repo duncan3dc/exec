@@ -57,4 +57,12 @@ interface ProgramInterface
      * @throws Exception
      */
     public function exec(string ...$arguments): ResultInterface;
+
+
+    /**
+     * Check if the program is installed.
+     *
+     * @return bool
+     */
+    public function isInstalled(): bool;
 }

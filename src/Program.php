@@ -35,6 +35,11 @@ final class Program implements ProgramInterface
      */
     private $env = [];
 
+    /**
+     * @var bool|null $installed Whether this program is installed or not.
+     */
+    private $installed;
+
 
     /**
      * Create a new instance.
@@ -141,5 +146,27 @@ final class Program implements ProgramInterface
         }
 
         return $result;
+    }
+
+
+    /**
+     * @inheritDoc
+     */
+    public function isInstalled(): bool
+    {
+        if ($this->installed !== null) {
+            return $this->installed;
+        }
+
+        try {
+            $which = new Program("which", $this->output);
+            $which->exec($this->program);
+        } catch (ProgramException $e) {
+            $this->installed = false;
+            return $this->installed;
+        }
+
+        $this->installed = true;
+        return $this->installed;
     }
 }
