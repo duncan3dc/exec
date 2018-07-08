@@ -2,6 +2,7 @@
     "name": "duncan3dc/exec",
     "description": "An library to execute other programs from within PHP",
     "require": {
+        "ext-mbstring": "*",
         "php": "^7.1"
     },
     "require-dev": {

@@ -3,8 +3,11 @@
 namespace duncan3dc\ExecTests;
 
 use duncan3dc\Exec\Exceptions\ProgramException;
+use duncan3dc\Exec\Output\OutputInterface;
 use duncan3dc\Exec\Program;
 use duncan3dc\Mock\CoreFunction;
+use Mockery;
+use Mockery\MockInterface;
 use PHPUnit\Framework\TestCase;
 
 class ProgramTest extends TestCase
@@ -14,16 +17,22 @@ class ProgramTest extends TestCase
      */
     private $program;
 
+    /**
+     * @var OutputInterface|MockInterface $output An output instance to test with.
+     */
+    private $output;
 
     public function setUp()
     {
-        $this->program = new Program("ls");
+        $this->output = Mockery::mock(OutputInterface::class);
+        $this->program = new Program("ls", $this->output);
     }
 
 
     public function tearDown()
     {
         CoreFunction::close();
+        Mockery::close();
     }
 
 
@@ -33,6 +42,51 @@ class ProgramTest extends TestCase
             $param = $result;
             return true;
         });
+    }
+
+
+    public function ignoreOutput(): void
+    {
+        $this->output->shouldReceive("command");
+        $this->output->shouldReceive("break");
+        $this->output->shouldReceive("output");
+        $this->output->shouldReceive("end");
+    }
+
+
+    private function setupDefaultMock()
+    {
+        CoreFunction::mock("exec")
+            ->with("ls 2>&1", $this->mock(["line1"]), $this->mock(0));
+    }
+
+
+    public function testDefaultOutputLevels1()
+    {
+        $this->setupDefaultMock();
+
+        $this->output->shouldReceive("command")->once()->with("ls", "blue");
+        $this->output->shouldReceive("break")->once()->with("blue");
+        $this->output->shouldReceive("output")->once()->with("line1", "blue");
+        $this->output->shouldReceive("end")->once()->with("blue");
+
+        $result = $this->program->exec();
+        $this->assertSame(["line1"], $result->getLines());
+    }
+
+
+    public function testWithColor()
+    {
+        $this->setupDefaultMock();
+
+        $this->output->shouldReceive("command")->once()->with("ls", "orange");
+        $this->output->shouldReceive("break")->once()->with("orange");
+        $this->output->shouldReceive("output")->once()->with("line1", "orange");
+        $this->output->shouldReceive("end")->once()->with("orange");
+
+        $program = $this->program->withColor("orange");
+        $this->assertNotSame($this->program, $program);
+        $program->exec();
     }
 
 
@@ -51,6 +105,8 @@ class ProgramTest extends TestCase
      */
     public function testArguments($expected, array $args)
     {
+        $this->ignoreOutput();
+
         CoreFunction::mock("exec")
             ->with("ls {$expected} 2>&1", $this->mock([]), $this->mock(0));
 
@@ -63,6 +119,8 @@ class ProgramTest extends TestCase
 
     public function testExecReturnsOutput()
     {
+        $this->ignoreOutput();
+
         CoreFunction::mock("exec")
             ->with("ls 2>&1", $this->mock(["line1", "line2"]), $this->mock(0));
 
@@ -73,6 +131,8 @@ class ProgramTest extends TestCase
 
     public function testExecThrowsException()
     {
+        $this->ignoreOutput();
+
         CoreFunction::mock("exec")
             ->with("ls 2>&1", $this->mock([]), $this->mock(14));
 
