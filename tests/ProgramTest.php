@@ -90,6 +90,25 @@ class ProgramTest extends TestCase
     }
 
 
+    public function testWithPath()
+    {
+        # Mock the current directory
+        CoreFunction::mock("getcwd")->with()->andReturn("/original/location");
+
+        # Ensure that the directory is changed before the call, and restored after it
+        CoreFunction::mock("chdir")->with("/tmp/safe")->andReturn(true);
+        CoreFunction::mock("chdir")->with("/original/location")->andReturn(true);
+
+        $this->setupDefaultMock();
+
+        $program = $this->program->withPath("/tmp/safe");
+        $this->assertNotSame($this->program, $program);
+
+        $this->ignoreOutput();
+        $program->exec();
+    }
+
+
     public function argumentProvider()
     {
         $arguments = [

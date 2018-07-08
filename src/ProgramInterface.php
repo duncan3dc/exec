@@ -18,6 +18,16 @@ interface ProgramInterface
 
 
     /**
+     * Get a new instance that will run under the specified path.
+     *
+     * @param string $path The path to use
+     *
+     * @return ProgramInterface
+     */
+    public function withPath(string $path): ProgramInterface;
+
+
+    /**
      * Execute a command and return its output (ignoring any errors).
      *
      * @param string ...$arguments Any additional arguments to pass to the command

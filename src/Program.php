@@ -25,6 +25,11 @@ final class Program implements ProgramInterface
      */
     private $color = "blue";
 
+    /**
+     * @var string|null $path The working directory to run this program in.
+     */
+    private $path;
+
 
     /**
      * Create a new instance.
@@ -53,8 +58,24 @@ final class Program implements ProgramInterface
     /**
      * @inheritDoc
      */
+    public function withPath(string $path): ProgramInterface
+    {
+        $program = clone $this;
+        $program->path = $path;
+        return $program;
+    }
+
+
+    /**
+     * @inheritDoc
+     */
     public function getResult(string ...$arguments): ResultInterface
     {
+        if ($this->path !== null) {
+            $path = getcwd();
+            chdir($this->path);
+        }
+
         $command = $this->program;
         foreach ($arguments as $argument) {
             $command .= " " . escapeshellarg($argument);
@@ -76,6 +97,10 @@ final class Program implements ProgramInterface
             $this->output->output($line, $this->color);
         }
         $this->output->end($this->color);
+
+        if ($this->path !== null && isset($path)) {
+            chdir($path);
+        }
 
         return new Result($status, $lines);
     }
