@@ -10,7 +10,7 @@ use duncan3dc\Exec\ResultInterface;
 use duncan3dc\ExecTests\Handlers;
 use duncan3dc\ObjectIntruder\Intruder;
 use Mockery;
-use Mockery\Mock;
+use Mockery\MockInterface;
 use PHPUnit\Framework\TestCase;
 
 class NodeJsTest extends TestCase
@@ -21,7 +21,7 @@ class NodeJsTest extends TestCase
     private $node;
 
     /**
-     * @var ProgramInterface|Mock $program An program instance to test with.
+     * @var ProgramInterface|MockInterface $program An program instance to test with.
      */
     private $program;
 

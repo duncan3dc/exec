@@ -2,6 +2,6 @@
 
 namespace duncan3dc\Exec\Exceptions;
 
-interface Exception
+interface Exception extends \Throwable
 {
 }

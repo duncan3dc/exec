@@ -9,7 +9,7 @@ use duncan3dc\Exec\Programs\Composer;
 use duncan3dc\Exec\ResultInterface;
 use duncan3dc\ObjectIntruder\Intruder;
 use Mockery;
-use Mockery\Mock;
+use Mockery\MockInterface;
 use PHPUnit\Framework\TestCase;
 
 class ComposerTest extends TestCase
@@ -20,7 +20,7 @@ class ComposerTest extends TestCase
     private $composer;
 
     /**
-     * @var ProgramInterface|Mock $program An program instance to test with.
+     * @var ProgramInterface|MockInterface $program An program instance to test with.
      */
     private $program;
 

@@ -125,7 +125,7 @@ final class Result implements ResultInterface
      */
     public function key(): int
     {
-        return key($this->lines);
+        return (int) key($this->lines);
     }
 
 

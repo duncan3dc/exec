@@ -3,9 +3,8 @@
 namespace duncan3dc\ExecTests\Output;
 
 use duncan3dc\Exec\Output\File;
-use function file_get_contents;
-use function fopen;
 use PHPUnit\Framework\TestCase;
+use function file_get_contents;
 use function sys_get_temp_dir;
 use function tempnam;
 use function unlink;
@@ -25,7 +24,8 @@ class FileTest extends TestCase
 
     public function setUp()
     {
-        $this->path = tempnam(sys_get_temp_dir(), "duncan3dc_exec_phpunit_");
+        $this->path = (string) tempnam(sys_get_temp_dir(), "duncan3dc_exec_phpunit_");
+
         $file = new \SplFileObject($this->path, "w+");
         $this->output = new File($file);
     }
@@ -75,7 +75,7 @@ class FileTest extends TestCase
     public function testEnd()
     {
         $this->output->end("");
-        $result = file_get_contents($this->path);
+        $result = (string) file_get_contents($this->path);
         $this->assertRegExp("/^\n-+\n$/", $result);
     }
 }

@@ -125,7 +125,7 @@ final class Program implements ProgramInterface
         }
         $this->output->end($this->color);
 
-        if ($this->path !== null && isset($path)) {
+        if ($this->path !== null && isset($path) && $path !== false) {
             chdir($path);
         }
 
