@@ -15,7 +15,7 @@ class HtmlTest extends TestCase
 
     public function setUp()
     {
-        $this->output = new Html;
+        $this->output = new Html();
     }
 
 

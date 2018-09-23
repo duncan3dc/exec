@@ -15,7 +15,7 @@ class SilentTest extends TestCase
 
     public function setUp()
     {
-        $this->output = new Silent;
+        $this->output = new Silent();
     }
 
 

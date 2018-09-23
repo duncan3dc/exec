@@ -62,7 +62,7 @@ final class File implements OutputInterface
     public function end(string $color): void
     {
         $this->break("");
-        $this->file->fwrite(new Line);
+        $this->file->fwrite(new Line());
         $this->break("");
     }
 }

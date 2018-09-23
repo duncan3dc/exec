@@ -47,7 +47,7 @@ final class Plain implements OutputInterface
     public function end(string $color): void
     {
         $this->break($color);
-        echo new Line;
+        echo new Line();
         $this->break($color);
     }
 }

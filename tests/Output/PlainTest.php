@@ -15,7 +15,7 @@ class PlainTest extends TestCase
 
     public function setUp()
     {
-        $this->output = new Plain;
+        $this->output = new Plain();
     }
 
 
