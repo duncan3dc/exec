@@ -9,6 +9,10 @@ PHPDoc API documentation is also available at [http://duncan3dc.github.io/exec/a
 [![Coverage Status](https://coveralls.io/repos/github/duncan3dc/exec/badge.svg)](https://coveralls.io/github/duncan3dc/exec)
 
 
+## Changelog
+A [Changelog](CHANGELOG.md) has been available since the beginning of time
+
+
 ## Where to get help
 Found a bug? Got a question? Just not sure how something works?  
 Please [create an issue](//github.com/duncan3dc/exec/issues) and I'll do my best to help out.  
