@@ -22,7 +22,10 @@ class FileTest extends TestCase
     private $path;
 
 
-    public function setUp()
+    /**
+     * @inheritdoc
+     */
+    public function setUp(): void
     {
         $this->path = (string) tempnam(sys_get_temp_dir(), "duncan3dc_exec_phpunit_");
 
@@ -31,7 +34,10 @@ class FileTest extends TestCase
     }
 
 
-    public function tearDown()
+    /**
+     * @inheritdoc
+     */
+    public function tearDown(): void
     {
         unlink($this->path);
     }

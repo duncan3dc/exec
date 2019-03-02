@@ -24,14 +24,21 @@ class ProgramTest extends TestCase
      */
     private $output;
 
-    public function setUp()
+
+    /**
+     * @inheritdoc
+     */
+    public function setUp(): void
     {
         $this->output = Mockery::mock(OutputInterface::class);
         $this->program = new Program("ls", $this->output);
     }
 
 
-    public function tearDown()
+    /**
+     * @inheritdoc
+     */
+    public function tearDown(): void
     {
         CoreFunction::close();
         Mockery::close();

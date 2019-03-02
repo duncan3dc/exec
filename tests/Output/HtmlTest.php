@@ -13,7 +13,10 @@ class HtmlTest extends TestCase
     private $output;
 
 
-    public function setUp()
+    /**
+     * @inheritdoc
+     */
+    public function setUp(): void
     {
         $this->output = new Html();
     }

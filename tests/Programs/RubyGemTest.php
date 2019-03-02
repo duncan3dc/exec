@@ -8,7 +8,6 @@ use duncan3dc\Exec\Output\Silent;
 use duncan3dc\Exec\ProgramInterface;
 use duncan3dc\Exec\Programs\RubyGem;
 use duncan3dc\Exec\ResultInterface;
-use duncan3dc\ExecTests\Handlers;
 use duncan3dc\ObjectIntruder\Intruder;
 use Mockery;
 use Mockery\MockInterface;
@@ -27,7 +26,10 @@ class RubyGemTest extends TestCase
     private $program;
 
 
-    public function setUp()
+    /**
+     * @inheritdoc
+     */
+    public function setUp(): void
     {
         $output = Mockery::mock(OutputInterface::class);
         $this->gem = new RubyGem("super-gem", $output);
@@ -38,7 +40,10 @@ class RubyGemTest extends TestCase
     }
 
 
-    public function tearDown()
+    /**
+     * @inheritdoc
+     */
+    public function tearDown(): void
     {
         Mockery::close();
     }

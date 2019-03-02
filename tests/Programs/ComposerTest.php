@@ -25,7 +25,11 @@ class ComposerTest extends TestCase
      */
     private $program;
 
-    public function setUp()
+
+    /**
+     * @inheritdoc
+     */
+    public function setUp(): void
     {
         $output = Mockery::mock(OutputInterface::class);
         $this->composer = new Composer($output);
@@ -36,7 +40,10 @@ class ComposerTest extends TestCase
     }
 
 
-    public function tearDown()
+    /**
+     * @inheritdoc
+     */
+    public function tearDown(): void
     {
         Mockery::close();
     }
