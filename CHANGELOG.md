@@ -5,6 +5,14 @@ Changelog
 
 --------
 
+## 0.3.0 - 2019-04-06
+
+### Added
+
+* [Factory] Created a FactoryInterface.
+
+--------
+
 ## 0.2.0 - 2019-03-02
 
 ### Added

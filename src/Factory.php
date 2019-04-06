@@ -4,7 +4,7 @@ namespace duncan3dc\Exec;
 
 use duncan3dc\Exec\Output\OutputInterface;
 
-final class Factory
+final class Factory implements FactoryInterface
 {
     /**
      * @var OutputInterface $output The output instance to log to.
@@ -39,13 +39,18 @@ final class Factory
 
 
     /**
-     * Get a new instance that outputs in a different colour.
-     *
-     * @param string $color One of the colour descriptions accepted by the output instance
-     *
-     * @return self
+     * @inheritdoc
      */
-    public function withColor(string $color): self
+    public function getOutput(): OutputInterface
+    {
+        return $this->output;
+    }
+
+
+    /**
+     * @inheritdoc
+     */
+    public function withColor(string $color): FactoryInterface
     {
         $factory = clone $this;
         $factory->color = $color;
@@ -54,13 +59,9 @@ final class Factory
 
 
     /**
-     * Get a new instance that will run under the specified path.
-     *
-     * @param string $path The path to use
-     *
-     * @return self
+     * @inheritdoc
      */
-    public function withPath(string $path): self
+    public function withPath(string $path): FactoryInterface
     {
         $factory = clone $this;
         $factory->path = $path;
@@ -69,14 +70,9 @@ final class Factory
 
 
     /**
-     * Get a new instance with an environment variable set.
-     *
-     * @param string $key The environmment variable to set
-     * @param string $value The value to set
-     *
-     * @return self
+     * @inheritdoc
      */
-    public function withEnv(string $key, string $value): self
+    public function withEnv(string $key, string $value): FactoryInterface
     {
         $factory = clone $this;
         $factory->env[$key] = $value;
@@ -85,9 +81,7 @@ final class Factory
 
 
     /**
-     * Create a new program instance.
-     *
-     * @return ProgramInterface
+     * @inheritdoc
      */
     public function make(string $name, string $class = Program::class): ProgramInterface
     {
