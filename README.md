@@ -4,9 +4,9 @@ Run command line processes from within PHP
 Full documentation is available at http://duncan3dc.github.io/exec/  
 PHPDoc API documentation is also available at [http://duncan3dc.github.io/exec/api/](http://duncan3dc.github.io/exec/api/namespaces/duncan3dc.Exec.html)  
 
-[![Latest Version](https://poser.pugx.org/duncan3dc/exec/version.svg)](https://packagist.org/packages/duncan3dc/exec)
-[![Build Status](https://travis-ci.org/duncan3dc/exec.svg?branch=master)](https://travis-ci.org/duncan3dc/exec)
-[![Coverage Status](https://coveralls.io/repos/github/duncan3dc/exec/badge.svg)](https://coveralls.io/github/duncan3dc/exec)
+[![release](https://poser.pugx.org/duncan3dc/exec/version.svg)](https://packagist.org/packages/duncan3dc/exec)
+[![build](https://travis-ci.org/duncan3dc/exec.svg?branch=master)](https://travis-ci.org/duncan3dc/exec)
+[![coverage](https://codecov.io/gh/duncan3dc/exec/graph/badge.svg)](https://codecov.io/gh/duncan3dc/exec)
 
 
 ## Changelog
