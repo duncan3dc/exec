@@ -20,6 +20,7 @@
     "require-dev": {
         "duncan3dc/object-intruder": "^0.3",
         "duncan3dc/uopz-expectations": "^0.3",
+        "infection/infection": "^0.15.0",
         "maglnet/composer-require-checker": "^1.0",
         "mockery/mockery": "^1.2",
         "phpstan/phpstan": "^0.11.19",
@@ -41,6 +42,7 @@
             "vendor/bin/phpstan analyse --level=max src",
             "vendor/bin/phpstan analyse --level=max --configuration=phpstan-tests.neon tests",
             "vendor/bin/phpcs",
+            "vendor/bin/infection -j$(nproc) --min-covered-msi=100",
             "@composer validate --strict"
         ]
     }

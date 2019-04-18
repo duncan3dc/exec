@@ -103,7 +103,7 @@ final class Symfony implements OutputInterface
         $format = "";
 
         if ($color) {
-            $format .= "fg={$color};";
+            $format = "fg={$color};";
         }
 
         if ($options) {

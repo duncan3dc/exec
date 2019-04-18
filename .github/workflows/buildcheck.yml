@@ -39,6 +39,9 @@ jobs:
       - name: Coding Standards
         run: docker exec ci vendor/bin/phpcs
 
+      - name: Infection Mutation Testing
+        run: docker exec ci vendor/bin/infection --min-covered-msi=100 -j$(nproc) --no-progress
+
       - name: Check Dependencies
         run: docker exec ci vendor/bin/composer-require-checker
 

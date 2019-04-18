@@ -74,7 +74,7 @@ class ProgramTest extends TestCase
 
     private function setupDefaultMock()
     {
-        CoreFunction::mock("exec")
+        CoreFunction::mock("exec")->once()
             ->with("ls 2>&1", $this->mock(["line1"]), $this->mock(0));
     }
 
@@ -90,6 +90,25 @@ class ProgramTest extends TestCase
 
         $result = $this->program->exec();
         $this->assertSame(["line1"], $result->getLines());
+    }
+
+
+    public function testDefaultOutputLevels2()
+    {
+        CoreFunction::mock("exec")->once()
+            ->with("ls 2>&1", $this->mock(["line1", "line2", "line3"]), $this->mock(0));
+
+        $this->output->shouldReceive("command")->once()->with("ls", "blue");
+        $this->output->shouldReceive("break")->once()->with("blue");
+        $this->output->shouldReceive("output")->once()->with("line1", "blue");
+        $this->output->shouldReceive("break")->once()->with("blue");
+        $this->output->shouldReceive("output")->once()->with("line2", "blue");
+        $this->output->shouldReceive("break")->once()->with("blue");
+        $this->output->shouldReceive("output")->once()->with("line3", "blue");
+        $this->output->shouldReceive("end")->once()->with("blue");
+
+        $result = $this->program->exec();
+        $this->assertSame(["line1", "line2", "line3"], $result->getLines());
     }
 
 
@@ -111,11 +130,11 @@ class ProgramTest extends TestCase
     public function testWithPath()
     {
         # Mock the current directory
-        CoreFunction::mock("getcwd")->with()->andReturn("/original/location");
+        CoreFunction::mock("getcwd")->once()->with()->andReturn("/original/location");
 
         # Ensure that the directory is changed before the call, and restored after it
-        CoreFunction::mock("chdir")->with("/tmp/safe")->andReturn(true);
-        CoreFunction::mock("chdir")->with("/original/location")->andReturn(true);
+        CoreFunction::mock("chdir")->once()->with("/tmp/safe")->andReturn(true);
+        CoreFunction::mock("chdir")->once()->with("/original/location")->andReturn(true);
 
         $this->setupDefaultMock();
 
@@ -129,9 +148,15 @@ class ProgramTest extends TestCase
 
     public function testWithEnv()
     {
-        $this->ignoreOutput();
+        $this->output->shouldReceive("env")->once()->with("TEST", "yep", "blue");
+        $this->output->shouldReceive("env")->once()->with("MORE", "ok", "blue");
 
-        CoreFunction::mock("exec")
+        $this->output->shouldReceive("command")->once()->with("ls", "blue");
+        $this->output->shouldReceive("break")->once()->with("blue");
+        $this->output->shouldReceive("output")->once()->with("line1", "blue");
+        $this->output->shouldReceive("end")->once()->with("blue");
+
+        CoreFunction::mock("exec")->once()
             ->with("TEST=yep MORE=ok ls 2>&1", $this->mock(["line1"]), $this->mock(0));
 
         $program = $this->program->withEnv("TEST", "yep")->withEnv("MORE", "ok");
@@ -158,7 +183,7 @@ class ProgramTest extends TestCase
     {
         $this->ignoreOutput();
 
-        CoreFunction::mock("exec")
+        CoreFunction::mock("exec")->once()
             ->with("ls {$expected} 2>&1", $this->mock([]), $this->mock(0));
 
         $this->program->exec(...$args);
@@ -172,7 +197,7 @@ class ProgramTest extends TestCase
     {
         $this->ignoreOutput();
 
-        CoreFunction::mock("exec")
+        CoreFunction::mock("exec")->once()
             ->with("ls 2>&1", $this->mock(["line1", "line2"]), $this->mock(0));
 
         $result = $this->program->exec()->getLines();
@@ -184,7 +209,7 @@ class ProgramTest extends TestCase
     {
         $this->ignoreOutput();
 
-        CoreFunction::mock("exec")
+        CoreFunction::mock("exec")->once()
             ->with("ls 2>&1", $this->mock([]), $this->mock(14));
 
         $this->expectException(ProgramException::class);

@@ -15,6 +15,13 @@ class LineTest extends TestCase
     }
 
 
+    public function testDefaultLength()
+    {
+        $line = new Line("X");
+        $this->assertSame("XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX", (string) $line);
+    }
+
+
     public function testNoCharacter()
     {
         $this->expectException(\InvalidArgumentException::class);
