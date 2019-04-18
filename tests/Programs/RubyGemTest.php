@@ -91,6 +91,17 @@ class RubyGemTest extends TestCase
     }
 
 
+    public function testWithPrivateEnv()
+    {
+        $this->program->shouldReceive("withPrivateEnv")->with("cono", "HH");
+
+        $result = $this->gem->withPrivateEnv("cono", "HH");
+
+        $this->assertInstanceOf(RubyGem::class, $result);
+        $this->assertNotSame($this->gem, $result);
+    }
+
+
     public function testExec()
     {
         $this->program->shouldReceive("isInstalled")->with()->andReturn(true);

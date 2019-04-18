@@ -111,6 +111,26 @@ class FactoryTest extends TestCase
     }
 
 
+    public function testWithPrivateEnv1(): void
+    {
+        $output = Mockery::mock(OutputInterface::class);
+        $original = new Factory($output);
+        $factory = $original->withEnv("PUBLIC", "ok")->withPrivateEnv("PRIVATE", "secret");
+        $this->assertNotSame($original, $factory);
+
+        /** @var Example $program */
+        $program = $factory->make("ls", Example::class);
+
+        $this->assertInstanceOf(Example::class, $program);
+        $this->assertSame("ls", $program->getProgram());
+        $this->assertSame($output, $program->getOutput());
+        $this->assertSame("default", $program->getColor());
+        $this->assertSame("default", $program->getPath());
+        $this->assertSame(["PUBLIC" => "ok", "PRIVATE" => "secret"], $program->getEnv());
+        $this->assertSame(["PRIVATE"], $program->getPrivateEnv());
+    }
+
+
     public function testMake()
     {
         $output = Mockery::mock(OutputInterface::class);

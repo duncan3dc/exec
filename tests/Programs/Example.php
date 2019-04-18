@@ -35,6 +35,12 @@ final class Example implements ProgramInterface
     private $env = [];
 
     /**
+     * @var string[] A list of environment variables that are private.
+     */
+    private $private = [];
+
+
+    /**
      * Create a new instance.
      *
      * @param string $program The name of the program to run
@@ -76,6 +82,18 @@ final class Example implements ProgramInterface
     {
         $program = clone $this;
         $program->env[$key] = $value;
+        return $program;
+    }
+
+
+    /**
+     * @inheritDoc
+     */
+    public function withPrivateEnv(string $key, string $value): ProgramInterface
+    {
+        $program = clone $this;
+        $program->env[$key] = $value;
+        $program->private[] = $key;
         return $program;
     }
 
@@ -134,5 +152,11 @@ final class Example implements ProgramInterface
     public function getEnv(): array
     {
         return $this->env;
+    }
+
+
+    public function getPrivateEnv(): array
+    {
+        return $this->private;
     }
 }

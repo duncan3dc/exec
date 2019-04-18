@@ -78,6 +78,17 @@ final class Composer implements ProgramInterface
     /**
      * @inheritDoc
      */
+    public function withPrivateEnv(string $key, string $value): ProgramInterface
+    {
+        $composer = clone $this;
+        $composer->program = $this->program->withPrivateEnv($key, $value);
+        return $composer;
+    }
+
+
+    /**
+     * @inheritDoc
+     */
     public function getResult(string ...$arguments): ResultInterface
     {
         array_unshift($arguments, "--no-interaction");

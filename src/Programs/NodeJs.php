@@ -85,6 +85,17 @@ final class NodeJs implements ProgramInterface
     /**
      * @inheritDoc
      */
+    public function withPrivateEnv(string $key, string $value): ProgramInterface
+    {
+        $node = clone $this;
+        $node->program = $this->program->withPrivateEnv($key, $value);
+        return $node;
+    }
+
+
+    /**
+     * @inheritDoc
+     */
     public function getResult(string ...$arguments): ResultInterface
     {
         if (!$this->isInstalled()) {

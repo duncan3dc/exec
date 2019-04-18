@@ -39,6 +39,17 @@ interface ProgramInterface
 
 
     /**
+     * Get a new instance with a private environment variable set.
+     *
+     * @param string $key The environment variable to set
+     * @param string $value The value to set
+     *
+     * @return ProgramInterface
+     */
+    public function withPrivateEnv(string $key, string $value): ProgramInterface;
+
+
+    /**
      * Execute a command and return its output (ignoring any errors).
      *
      * @param string ...$arguments Any additional arguments to pass to the command

@@ -85,6 +85,17 @@ final class RubyGem implements ProgramInterface
     /**
      * @inheritDoc
      */
+    public function withPrivateEnv(string $key, string $value): ProgramInterface
+    {
+        $gem = clone $this;
+        $gem->program = $this->program->withPrivateEnv($key, $value);
+        return $gem;
+    }
+
+
+    /**
+     * @inheritDoc
+     */
     public function getResult(string ...$arguments): ResultInterface
     {
         if (!$this->isInstalled()) {

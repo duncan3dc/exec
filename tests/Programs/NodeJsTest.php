@@ -91,6 +91,17 @@ class NodeJsTest extends TestCase
     }
 
 
+    public function testWithPrivateEnv()
+    {
+        $this->program->shouldReceive("withPrivateEnv")->with("cono", "HH");
+
+        $result = $this->node->withPrivateEnv("cono", "HH");
+
+        $this->assertInstanceOf(NodeJs::class, $result);
+        $this->assertNotSame($this->node, $result);
+    }
+
+
     public function testExec()
     {
         $this->program->shouldReceive("isInstalled")->with()->andReturn(true);

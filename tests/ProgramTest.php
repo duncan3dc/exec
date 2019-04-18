@@ -141,6 +141,28 @@ class ProgramTest extends TestCase
     }
 
 
+    /**
+     * Ensure private environment variables are used correctly but not output.
+     */
+    public function testWithPrivateEnv1(): void
+    {
+        $this->output->shouldReceive("command")->once()->with("ls", "blue");
+        $this->output->shouldReceive("break")->once()->with("blue");
+        $this->output->shouldReceive("env")->once()->with("PUBLIC", "yep", "blue");
+        $this->output->shouldReceive("env")->once()->with("PRIVATE", "██████", "blue");
+        $this->output->shouldReceive("output")->once()->with("line1", "blue");
+        $this->output->shouldReceive("end")->once()->with("blue");
+
+        CoreFunction::mock("exec")
+            ->with("PUBLIC='yep' PRIVATE='secret' ls 2>&1", $this->mock(["line1"]), $this->mock(0));
+
+        $program = $this->program->withEnv("PUBLIC", "yep")->withPrivateEnv("PRIVATE", "secret");
+        $this->assertNotSame($this->program, $program);
+
+        $program->exec();
+    }
+
+
     public function argumentProvider()
     {
         $arguments = [

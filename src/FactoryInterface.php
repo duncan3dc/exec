@@ -46,6 +46,17 @@ interface FactoryInterface
 
 
     /**
+     * Get a new instance with a private environment variable set.
+     *
+     * @param string $key The environment variable to set
+     * @param string $value The value to set
+     *
+     * @return self
+     */
+    public function withPrivateEnv(string $key, string $value): self;
+
+
+    /**
      * Create a new program instance.
      *
      * @param string $name The name of the program to run

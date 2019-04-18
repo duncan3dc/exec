@@ -8,6 +8,9 @@ use duncan3dc\Exec\Output\Silent;
 
 use function escapeshellarg;
 use function exec;
+use function in_array;
+use function str_repeat;
+use function strlen;
 use function trim;
 
 final class Program implements ProgramInterface
@@ -33,9 +36,14 @@ final class Program implements ProgramInterface
     private $path;
 
     /**
-     * @var array $env The environment variables to set for the program.
+     * @var array<string,string> $env The environment variables to set for the program.
      */
     private $env = [];
+
+    /**
+     * @var string[] A list of environment variables that are private.
+     */
+    private $private = [];
 
     /**
      * @var bool|null $installed Whether this program is installed or not.
@@ -105,6 +113,18 @@ final class Program implements ProgramInterface
     /**
      * @inheritDoc
      */
+    public function withPrivateEnv(string $key, string $value): ProgramInterface
+    {
+        $program = clone $this;
+        $program->env[$key] = $value;
+        $program->private[] = $key;
+        return $program;
+    }
+
+
+    /**
+     * @inheritDoc
+     */
     public function getResult(string ...$arguments): ResultInterface
     {
         if ($this->path !== null) {
@@ -123,6 +143,9 @@ final class Program implements ProgramInterface
         $env = "";
         foreach ($this->env as $key => $value) {
             $env .= "{$key}=" . escapeshellarg($value) . " ";
+            if (in_array($key, $this->private, true)) {
+                $value = str_repeat("█", strlen($value));
+            }
             $this->output->env($key, $value, $this->color);
         }
 

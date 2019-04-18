@@ -91,6 +91,17 @@ class ComposerTest extends TestCase
     }
 
 
+    public function testWithPrivateEnv()
+    {
+        $this->program->shouldReceive("withPrivateEnv")->with("cono", "HH");
+
+        $result = $this->composer->withPrivateEnv("cono", "HH");
+
+        $this->assertInstanceOf(Composer::class, $result);
+        $this->assertNotSame($this->composer, $result);
+    }
+
+
     public function testExecUsesNoInteraction()
     {
         $expected = Mockery::mock(ResultInterface::class);

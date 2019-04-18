@@ -4,6 +4,8 @@ namespace duncan3dc\Exec;
 
 use duncan3dc\Exec\Output\OutputInterface;
 
+use function in_array;
+
 final class Factory implements FactoryInterface
 {
     /**
@@ -25,6 +27,11 @@ final class Factory implements FactoryInterface
      * @var array $env The environment variables to set for the program.
      */
     private $env = [];
+
+    /**
+     * @var string[] A list of environment variables that are private.
+     */
+    private $private = [];
 
 
     /**
@@ -80,6 +87,16 @@ final class Factory implements FactoryInterface
     }
 
 
+    /** @inheritDoc */
+    public function withPrivateEnv(string $key, string $value): FactoryInterface
+    {
+        $factory = clone $this;
+        $factory->env[$key] = $value;
+        $factory->private[] = $key;
+        return $factory;
+    }
+
+
     /**
      * @inheritdoc
      */
@@ -99,7 +116,11 @@ final class Factory implements FactoryInterface
         }
 
         foreach ($this->env as $key => $value) {
-            $program = $program->withEnv($key, $value);
+            if (in_array($key, $this->private, true)) {
+                $program = $program->withPrivateEnv($key, $value);
+            } else {
+                $program = $program->withEnv($key, $value);
+            }
         }
 
         return $program;
