@@ -54,11 +54,12 @@ class FactoryTest extends TestCase
     }
 
 
-    public function testWithColor()
+    public function testWithColor1(): void
     {
         $output = Mockery::mock(OutputInterface::class);
-        $factory = new Factory($output);
-        $factory = $factory->withColor("orange");
+        $original = new Factory($output);
+        $factory = $original->withColor("orange");
+        $this->assertNotSame($original, $factory);
 
         /** @var Example $program */
         $program = $factory->make("ls", Example::class);
@@ -72,11 +73,12 @@ class FactoryTest extends TestCase
     }
 
 
-    public function testWithPath()
+    public function testWithPath1(): void
     {
         $output = Mockery::mock(OutputInterface::class);
-        $factory = new Factory($output);
-        $factory = $factory->withPath("/tmp/stash");
+        $original = new Factory($output);
+        $factory = $original->withPath("/tmp/stash");
+        $this->assertNotSame($original, $factory);
 
         /** @var Example $program */
         $program = $factory->make("ls", Example::class);
@@ -90,11 +92,12 @@ class FactoryTest extends TestCase
     }
 
 
-    public function testWithEnv()
+    public function testWithEnv1(): void
     {
         $output = Mockery::mock(OutputInterface::class);
-        $factory = new Factory($output);
-        $factory = $factory->withEnv("one", "1")->withEnv("two", "2");
+        $original = new Factory($output);
+        $factory = $original->withEnv("one", "1")->withEnv("two", "2");
+        $this->assertNotSame($original, $factory);
 
         /** @var Example $program */
         $program = $factory->make("ls", Example::class);
