@@ -2,12 +2,11 @@
 
 namespace duncan3dc\ExecTests;
 
-use function count;
-use duncan3dc\Exec\Output\OutputInterface;
 use duncan3dc\Exec\Result;
-use Mockery;
-use Mockery\Mock;
 use PHPUnit\Framework\TestCase;
+
+use function count;
+use function iterator_to_array;
 
 class ResultTest extends TestCase
 {
@@ -131,5 +130,17 @@ class ResultTest extends TestCase
             $data[] = $line;
         }
         $this->assertSame([], $data);
+    }
+
+
+    /**
+     * Enrure we can iterate over it multiple times.
+     */
+    public function testIterable3(): void
+    {
+        $result = new Result(0, ["one", "two"]);
+
+        $this->assertSame(["one", "two"], iterator_to_array($result));
+        $this->assertSame(["one", "two"], iterator_to_array($result));
     }
 }
