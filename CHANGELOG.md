@@ -5,6 +5,23 @@ Changelog
 
 --------
 
+## 0.4.0 - 2020-01-29
+
+### Added
+
+* [Env] Added support for private environment variables.
+
+### Fixed
+
+* [Env] Ensure environment variables are quoted/escaped correctly.
+
+### Changed
+
+* [Support] Added support for Symfony 5.
+* [Support] Dropped support for Symfony 3.
+
+--------
+
 ## 0.3.0 - 2019-04-06
 
 ### Added
