@@ -8,6 +8,7 @@ use duncan3dc\Exec\Output\Silent;
 use duncan3dc\Exec\Program;
 use duncan3dc\Exec\ProgramInterface;
 use duncan3dc\Exec\ResultInterface;
+
 use function array_unshift;
 
 final class Composer implements ProgramInterface

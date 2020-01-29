@@ -4,6 +4,7 @@ namespace duncan3dc\ExecTests\Output;
 
 use duncan3dc\Exec\Output\File;
 use PHPUnit\Framework\TestCase;
+
 use function file_get_contents;
 use function sys_get_temp_dir;
 use function tempnam;

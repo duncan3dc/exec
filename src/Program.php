@@ -5,6 +5,7 @@ namespace duncan3dc\Exec;
 use duncan3dc\Exec\Exceptions\ProgramException;
 use duncan3dc\Exec\Output\OutputInterface;
 use duncan3dc\Exec\Output\Silent;
+
 use function escapeshellarg;
 use function exec;
 use function trim;
