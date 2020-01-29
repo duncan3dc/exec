@@ -132,7 +132,7 @@ class ProgramTest extends TestCase
         $this->ignoreOutput();
 
         CoreFunction::mock("exec")
-            ->with("TEST=yep MORE=ok ls 2>&1", $this->mock(["line1"]), $this->mock(0));
+            ->with("TEST='yep' MORE='ok' ls 2>&1", $this->mock(["line1"]), $this->mock(0));
 
         $program = $this->program->withEnv("TEST", "yep")->withEnv("MORE", "ok");
         $this->assertNotSame($this->program, $program);

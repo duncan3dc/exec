@@ -122,7 +122,7 @@ final class Program implements ProgramInterface
 
         $env = "";
         foreach ($this->env as $key => $value) {
-            $env .= "{$key}={$value} ";
+            $env .= "{$key}=" . escapeshellarg($value) . " ";
             $this->output->env($key, $value, $this->color);
         }
 
