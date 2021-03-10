@@ -22,7 +22,7 @@ class FactoryTest extends TestCase
     /**
      * @inheritdoc
      */
-    public function setUp(): void
+    protected function setUp(): void
     {
         $this->program = Mockery::mock(ProgramInterface::class);
     }
@@ -31,7 +31,7 @@ class FactoryTest extends TestCase
     /**
      * @inheritdoc
      */
-    public function tearDown(): void
+    protected function tearDown(): void
     {
         Mockery::close();
     }

@@ -29,7 +29,7 @@ class RubyGemTest extends TestCase
     /**
      * @inheritdoc
      */
-    public function setUp(): void
+    protected function setUp(): void
     {
         $output = Mockery::mock(OutputInterface::class);
         $this->gem = new RubyGem("super-gem", $output);
@@ -43,7 +43,7 @@ class RubyGemTest extends TestCase
     /**
      * @inheritdoc
      */
-    public function tearDown(): void
+    protected function tearDown(): void
     {
         Mockery::close();
     }
