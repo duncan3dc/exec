@@ -16,7 +16,7 @@ class SilentTest extends TestCase
     /**
      * @inheritdoc
      */
-    public function setUp(): void
+    protected function setUp(): void
     {
         $this->output = new Silent();
     }

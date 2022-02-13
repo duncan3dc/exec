@@ -28,7 +28,7 @@ class ProgramTest extends TestCase
     /**
      * @inheritdoc
      */
-    public function setUp(): void
+    protected function setUp(): void
     {
         $this->output = Mockery::mock(OutputInterface::class);
         $this->program = new Program("ls", $this->output);
@@ -38,7 +38,7 @@ class ProgramTest extends TestCase
     /**
      * @inheritdoc
      */
-    public function tearDown(): void
+    protected function tearDown(): void
     {
         CoreFunction::close();
         Mockery::close();

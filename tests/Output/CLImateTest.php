@@ -19,7 +19,7 @@ class CLImateTest extends TestCase
     /**
      * @inheritdoc
      */
-    public function setUp(): void
+    protected function setUp(): void
     {
         $this->climate = Mockery::mock(\League\CLImate\CLImate::class);
         $this->output = new CLImate($this->climate);
@@ -29,7 +29,7 @@ class CLImateTest extends TestCase
     /**
      * @inheritdoc
      */
-    public function tearDown(): void
+    protected function tearDown(): void
     {
         Mockery::close();
     }
