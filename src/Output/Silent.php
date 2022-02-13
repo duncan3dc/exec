@@ -4,7 +4,6 @@ namespace duncan3dc\Exec\Output;
 
 final class Silent implements OutputInterface
 {
-
     /**
      * @inheritDoc
      */

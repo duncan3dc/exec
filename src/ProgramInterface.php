@@ -6,7 +6,6 @@ use duncan3dc\Exec\Exceptions\Exception;
 
 interface ProgramInterface
 {
-
     /**
      * Get a new instance that outputs in a different colour.
      *

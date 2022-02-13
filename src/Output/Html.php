@@ -6,7 +6,6 @@ use function str_repeat;
 
 final class Html implements OutputInterface
 {
-
     /**
      * @inheritDoc
      */

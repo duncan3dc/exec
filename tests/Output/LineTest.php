@@ -7,7 +7,6 @@ use PHPUnit\Framework\TestCase;
 
 class LineTest extends TestCase
 {
-
     public function testWorks()
     {
         $line = new Line("X", 10);

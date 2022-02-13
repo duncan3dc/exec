@@ -10,7 +10,6 @@ use function iterator_to_array;
 
 class ResultTest extends TestCase
 {
-
     public function testGetStatus1()
     {
         $result = new Result(0, []);
