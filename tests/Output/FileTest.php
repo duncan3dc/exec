@@ -83,6 +83,6 @@ class FileTest extends TestCase
     {
         $this->output->end("");
         $result = (string) file_get_contents($this->path);
-        $this->assertRegExp("/^\n-+\n$/", $result);
+        $this->assertMatchesRegularExpression("/^\n-+\n$/", $result);
     }
 }
