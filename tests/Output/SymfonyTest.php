@@ -27,7 +27,7 @@ class SymfonyTest extends TestCase
     }
 
 
-    private function setOutputVerbosity($verbosity): void
+    private function setOutputVerbosity(int $verbosity): void
     {
         $this->output = Mockery::mock(OutputInterface::class);
         $this->output->shouldReceive("getVerbosity")->andReturn($verbosity);

@@ -37,7 +37,7 @@ class FactoryTest extends TestCase
     }
 
 
-    public function testConstructor()
+    public function testConstructor(): void
     {
         $output = Mockery::mock(OutputInterface::class);
         $factory = new Factory($output);
@@ -131,7 +131,7 @@ class FactoryTest extends TestCase
     }
 
 
-    public function testMake()
+    public function testMake(): void
     {
         $output = Mockery::mock(OutputInterface::class);
         $factory = new Factory($output);
@@ -142,7 +142,7 @@ class FactoryTest extends TestCase
     }
 
 
-    public function testMakeInvalid()
+    public function testMakeInvalid(): void
     {
         $output = Mockery::mock(OutputInterface::class);
         $factory = new Factory($output);

@@ -7,14 +7,14 @@ use PHPUnit\Framework\TestCase;
 
 class LineTest extends TestCase
 {
-    public function testWorks()
+    public function testWorks(): void
     {
         $line = new Line("X", 10);
         $this->assertSame("XXXXXXXXXX", (string) $line);
     }
 
 
-    public function testNoCharacter()
+    public function testNoCharacter(): void
     {
         $this->expectException(\InvalidArgumentException::class);
         $this->expectExceptionMessage("Invalid character [], must be a single character");
@@ -22,7 +22,7 @@ class LineTest extends TestCase
     }
 
 
-    public function testTooManyCharacter()
+    public function testTooManyCharacter(): void
     {
         $this->expectException(\InvalidArgumentException::class);
         $this->expectExceptionMessage("Invalid character [AB], must be a single character");

@@ -18,7 +18,7 @@ final class Result implements ResultInterface
     private $status;
 
     /**
-     * @var array All of the output from the command.
+     * @var array<string> All of the output from the command.
      */
     private $lines;
 
@@ -65,7 +65,7 @@ final class Result implements ResultInterface
      */
     public function getFirstLine(): string
     {
-        return reset($this->lines);
+        return (string) reset($this->lines);
     }
 
 
@@ -76,7 +76,7 @@ final class Result implements ResultInterface
      */
     public function getLastLine(): string
     {
-        return end($this->lines);
+        return (string) end($this->lines);
     }
 
 
@@ -107,7 +107,7 @@ final class Result implements ResultInterface
      */
     public function current(): string
     {
-        return current($this->lines);
+        return (string) current($this->lines);
     }
 
 

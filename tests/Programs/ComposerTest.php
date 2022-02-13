@@ -58,7 +58,7 @@ class ComposerTest extends TestCase
     }
 
 
-    public function testWithColor()
+    public function testWithColor(): void
     {
         $this->program->shouldReceive("withColor")->with("green");
 
@@ -69,7 +69,7 @@ class ComposerTest extends TestCase
     }
 
 
-    public function testWithPath()
+    public function testWithPath(): void
     {
         $this->program->shouldReceive("withPath")->with("/tmp");
 
@@ -80,7 +80,7 @@ class ComposerTest extends TestCase
     }
 
 
-    public function testWithEnv()
+    public function testWithEnv(): void
     {
         $this->program->shouldReceive("withEnv")->with("cono", "RP");
 
@@ -91,7 +91,7 @@ class ComposerTest extends TestCase
     }
 
 
-    public function testWithPrivateEnv()
+    public function testWithPrivateEnv(): void
     {
         $this->program->shouldReceive("withPrivateEnv")->with("cono", "HH");
 
@@ -102,7 +102,7 @@ class ComposerTest extends TestCase
     }
 
 
-    public function testExecUsesNoInteraction()
+    public function testExecUsesNoInteraction(): void
     {
         $expected = Mockery::mock(ResultInterface::class);
         $expected->shouldReceive("getStatus")->with()->andReturn(0);
@@ -114,7 +114,7 @@ class ComposerTest extends TestCase
     }
 
 
-    public function testExecThrowsException()
+    public function testExecThrowsException(): void
     {
         $result = Mockery::mock(ResultInterface::class);
         $result->shouldReceive("getStatus")->with()->andReturn(99);
@@ -126,7 +126,7 @@ class ComposerTest extends TestCase
     }
 
 
-    public function testIsInstalled()
+    public function testIsInstalled(): void
     {
         $this->program->shouldReceive("isInstalled")->with()->andReturn(true);
 
@@ -136,7 +136,7 @@ class ComposerTest extends TestCase
     }
 
 
-    public function testUpdate()
+    public function testUpdate(): void
     {
         $expected = Mockery::mock(ResultInterface::class);
         $expected->shouldReceive("getStatus")->with()->andReturn(0);

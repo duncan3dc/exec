@@ -24,7 +24,7 @@ final class Factory implements FactoryInterface
     private $path;
 
     /**
-     * @var array $env The environment variables to set for the program.
+     * @var array<string, string> $env The environment variables to set for the program.
      */
     private $env = [];
 

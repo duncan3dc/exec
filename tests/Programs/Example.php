@@ -30,7 +30,7 @@ final class Example implements ProgramInterface
     private $path = "default";
 
     /**
-     * @var array $env The environment variables to set for the program.
+     * @var array<string, string> $env The environment variables to set for the program.
      */
     private $env = [];
 
@@ -149,12 +149,18 @@ final class Example implements ProgramInterface
     }
 
 
+    /**
+     * @return array<string, string>
+     */
     public function getEnv(): array
     {
         return $this->env;
     }
 
 
+    /**
+     * @return string[]
+     */
     public function getPrivateEnv(): array
     {
         return $this->private;

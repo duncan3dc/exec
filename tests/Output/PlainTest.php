@@ -22,35 +22,35 @@ class PlainTest extends TestCase
     }
 
 
-    public function testCommand()
+    public function testCommand(): void
     {
         $this->expectOutputString("ls");
         $this->output->command("ls", "blue");
     }
 
 
-    public function testEnv()
+    public function testEnv(): void
     {
         $this->expectOutputString("\t[TEST = yep]\n");
         $this->output->env("TEST", "yep", "blue");
     }
 
 
-    public function testOutput()
+    public function testOutput(): void
     {
         $this->expectOutputString("\tline1");
         $this->output->output("line1", "blue");
     }
 
 
-    public function testBreak()
+    public function testBreak(): void
     {
         $this->expectOutputString("\n");
         $this->output->break("");
     }
 
 
-    public function testEnd()
+    public function testEnd(): void
     {
         $this->expectOutputRegex("/^\n-+\n$/");
         $this->output->end("");

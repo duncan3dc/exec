@@ -45,6 +45,9 @@ class ProgramTest extends TestCase
     }
 
 
+    /**
+     * @param mixed $result
+     */
     private function mock($result): \Mockery\Matcher\Closure
     {
         return \Mockery::on(function (&$param) use ($result) {
@@ -72,14 +75,14 @@ class ProgramTest extends TestCase
     }
 
 
-    private function setupDefaultMock()
+    private function setupDefaultMock(): void
     {
         CoreFunction::mock("exec")
             ->with("ls 2>&1", $this->mock(["line1"]), $this->mock(0));
     }
 
 
-    public function testDefaultOutputLevels1()
+    public function testDefaultOutputLevels1(): void
     {
         $this->setupDefaultMock();
 
@@ -93,7 +96,7 @@ class ProgramTest extends TestCase
     }
 
 
-    public function testWithColor()
+    public function testWithColor(): void
     {
         $this->setupDefaultMock();
 
@@ -108,7 +111,7 @@ class ProgramTest extends TestCase
     }
 
 
-    public function testWithPath()
+    public function testWithPath(): void
     {
         # Mock the current directory
         CoreFunction::mock("getcwd")->with()->andReturn("/original/location");
@@ -127,7 +130,7 @@ class ProgramTest extends TestCase
     }
 
 
-    public function testWithEnv()
+    public function testWithEnv(): void
     {
         $this->ignoreOutput();
 
@@ -163,7 +166,10 @@ class ProgramTest extends TestCase
     }
 
 
-    public function argumentProvider()
+    /**
+     * @return iterable<array<mixed>>
+     */
+    public function argumentProvider(): iterable
     {
         $arguments = [
             "'just one arg'" => ["just one arg"],
@@ -175,8 +181,9 @@ class ProgramTest extends TestCase
     }
     /**
      * @dataProvider argumentProvider
+     * @param array<mixed> $args
      */
-    public function testArguments($expected, array $args)
+    public function testArguments(string $expected, array $args): void
     {
         $this->ignoreOutput();
 
@@ -190,7 +197,7 @@ class ProgramTest extends TestCase
     }
 
 
-    public function testExecReturnsOutput()
+    public function testExecReturnsOutput(): void
     {
         $this->ignoreOutput();
 
@@ -202,7 +209,7 @@ class ProgramTest extends TestCase
     }
 
 
-    public function testExecThrowsException()
+    public function testExecThrowsException(): void
     {
         $this->ignoreOutput();
 
@@ -215,14 +222,16 @@ class ProgramTest extends TestCase
     }
 
 
-    public function testIsInstalled1()
+    public function testIsInstalled1(): void
     {
         $this->ignoreOutput();
 
         $this->assertTrue($this->program->isInstalled());
         $this->assertTrue($this->program->isInstalled());
     }
-    public function testIsInstalled2()
+
+
+    public function testIsInstalled2(): void
     {
         $this->ignoreOutput();
 

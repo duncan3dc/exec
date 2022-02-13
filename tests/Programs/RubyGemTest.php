@@ -58,7 +58,7 @@ class RubyGemTest extends TestCase
     }
 
 
-    public function testWithColor()
+    public function testWithColor(): void
     {
         $this->program->shouldReceive("withColor")->with("green");
 
@@ -69,7 +69,7 @@ class RubyGemTest extends TestCase
     }
 
 
-    public function testWithPath()
+    public function testWithPath(): void
     {
         $this->program->shouldReceive("withPath")->with("/tmp");
 
@@ -80,7 +80,7 @@ class RubyGemTest extends TestCase
     }
 
 
-    public function testWithEnv()
+    public function testWithEnv(): void
     {
         $this->program->shouldReceive("withEnv")->with("cono", "HH");
 
@@ -91,7 +91,7 @@ class RubyGemTest extends TestCase
     }
 
 
-    public function testWithPrivateEnv()
+    public function testWithPrivateEnv(): void
     {
         $this->program->shouldReceive("withPrivateEnv")->with("cono", "HH");
 
@@ -102,7 +102,7 @@ class RubyGemTest extends TestCase
     }
 
 
-    public function testExec()
+    public function testExec(): void
     {
         $this->program->shouldReceive("isInstalled")->with()->andReturn(true);
 
@@ -115,7 +115,7 @@ class RubyGemTest extends TestCase
     }
 
 
-    public function testExecThrowsException()
+    public function testExecThrowsException(): void
     {
         $this->program->shouldReceive("isInstalled")->with()->andReturn(true);
 
@@ -129,7 +129,7 @@ class RubyGemTest extends TestCase
     }
 
 
-    public function testExecChecksInstalled()
+    public function testExecChecksInstalled(): void
     {
         $this->program->shouldReceive("isInstalled")->with()->andReturn(false);
 
@@ -139,7 +139,7 @@ class RubyGemTest extends TestCase
     }
 
 
-    public function testIsInstalled()
+    public function testIsInstalled(): void
     {
         $this->program->shouldReceive("isInstalled")->with()->andReturn(true);
 

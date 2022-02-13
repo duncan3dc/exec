@@ -2,6 +2,9 @@
 
 namespace duncan3dc\Exec;
 
+/**
+ * @extends \Iterator<int, string>
+ */
 interface ResultInterface extends \Iterator, \Countable
 {
     /**

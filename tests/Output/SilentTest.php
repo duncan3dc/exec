@@ -22,35 +22,35 @@ class SilentTest extends TestCase
     }
 
 
-    public function testCommand()
+    public function testCommand(): void
     {
         $this->expectOutputString("");
         $this->output->command("ls", "blue");
     }
 
 
-    public function testEnv()
+    public function testEnv(): void
     {
         $this->expectOutputString("");
         $this->output->env("TEST", "yep", "blue");
     }
 
 
-    public function testOutput()
+    public function testOutput(): void
     {
         $this->expectOutputString("");
         $this->output->output("line1", "blue");
     }
 
 
-    public function testBreak()
+    public function testBreak(): void
     {
         $this->expectOutputString("");
         $this->output->break("");
     }
 
 
-    public function testEnd()
+    public function testEnd(): void
     {
         $this->expectOutputString("");
         $this->output->end("");

@@ -10,32 +10,35 @@ use function iterator_to_array;
 
 class ResultTest extends TestCase
 {
-    public function testGetStatus1()
+    public function testGetStatus1(): void
     {
         $result = new Result(0, []);
         $this->assertSame(0, $result->getStatus());
     }
 
-    public function testGetStatus2()
+
+    public function testGetStatus2(): void
     {
         $result = new Result(254, []);
         $this->assertSame(254, $result->getStatus());
     }
 
 
-    public function testGetLines1()
+    public function testGetLines1(): void
     {
         $result = new Result(0, ["one", "two", "three"]);
         $this->assertSame(["one", "two", "three"], $result->getLines());
     }
 
-    public function testGetLines2()
+
+    public function testGetLines2(): void
     {
         $result = new Result(0, []);
         $this->assertSame([], $result->getLines());
     }
 
-    public function testGetLines3()
+
+    public function testGetLines3(): void
     {
         $result = new Result(0, ["one", "two", "three"]);
         $result->getFirstLine();
@@ -45,19 +48,19 @@ class ResultTest extends TestCase
     }
 
 
-    public function testGetFirstLine1()
+    public function testGetFirstLine1(): void
     {
         $result = new Result(0, ["one", "two", "three"]);
         $this->assertSame("one", $result->getFirstLine());
     }
 
-    public function testGetFirstLine2()
+    public function testGetFirstLine2(): void
     {
         $result = new Result(0, []);
         $this->assertSame("", $result->getFirstLine());
     }
 
-    public function testGetFirstLine3()
+    public function testGetFirstLine3(): void
     {
         $result = new Result(0, ["one", "two", "three"]);
         $this->assertSame("one", $result->getFirstLine());
@@ -65,19 +68,21 @@ class ResultTest extends TestCase
     }
 
 
-    public function testGetLastLine1()
+    public function testGetLastLine1(): void
     {
         $result = new Result(0, ["one", "two", "three"]);
         $this->assertSame("three", $result->getLastLine());
     }
 
-    public function testGetLastLine2()
+
+    public function testGetLastLine2(): void
     {
         $result = new Result(0, []);
         $this->assertSame("", $result->getLastLine());
     }
 
-    public function testGetLastLine3()
+
+    public function testGetLastLine3(): void
     {
         $result = new Result(0, ["one", "two", "three"]);
         $this->assertSame("three", $result->getLastLine());
@@ -85,33 +90,35 @@ class ResultTest extends TestCase
     }
 
 
-    public function testToString1()
+    public function testToString1(): void
     {
         $result = new Result(0, ["one", "two", "three"]);
         $this->assertSame("one\ntwo\nthree", (string) $result);
     }
 
-    public function testToString2()
+
+    public function testToString2(): void
     {
         $result = new Result(0, []);
         $this->assertSame("", (string) $result);
     }
 
 
-    public function testCount1()
+    public function testCount1(): void
     {
         $result = new Result(0, ["one", "two", "three"]);
         $this->assertSame(3, count($result));
     }
 
-    public function testCount2()
+
+    public function testCount2(): void
     {
         $result = new Result(0, []);
         $this->assertSame(0, count($result));
     }
 
 
-    public function testIterable1()
+    public function testIterable1(): void
     {
         $result = new Result(0, ["one", "two", "three"]);
         $data = [];
@@ -121,7 +128,8 @@ class ResultTest extends TestCase
         $this->assertSame(["one", "two", "three"], $data);
     }
 
-    public function testIterable2()
+
+    public function testIterable2(): void
     {
         $result = new Result(0, []);
         $data = [];
