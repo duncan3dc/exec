@@ -77,8 +77,7 @@ class ProgramTest extends TestCase
 
     private function setupDefaultMock(): void
     {
-        CoreFunction::mock("exec")
-            ->with("ls 2>&1", $this->mock(["line1"]), $this->mock(0));
+        CoreFunction::mock("exec")->with("ls 2>&1", $this->mock(["line1"]), $this->mock(0));
     }
 
 
@@ -134,8 +133,7 @@ class ProgramTest extends TestCase
     {
         $this->ignoreOutput();
 
-        CoreFunction::mock("exec")
-            ->with("TEST='yep' MORE='ok' ls 2>&1", $this->mock(["line1"]), $this->mock(0));
+        CoreFunction::mock("exec")->with("TEST='yep' MORE='ok' ls 2>&1", $this->mock(["line1"]), $this->mock(0));
 
         $program = $this->program->withEnv("TEST", "yep")->withEnv("MORE", "ok");
         $this->assertNotSame($this->program, $program);
@@ -156,8 +154,7 @@ class ProgramTest extends TestCase
         $this->output->shouldReceive("output")->once()->with("line1", "blue");
         $this->output->shouldReceive("end")->once()->with("blue");
 
-        CoreFunction::mock("exec")
-            ->with("PUBLIC='yep' PRIVATE='secret' ls 2>&1", $this->mock(["line1"]), $this->mock(0));
+        CoreFunction::mock("exec")->with("PUBLIC='yep' PRIVATE='secret' ls 2>&1", $this->mock(["line1"]), $this->mock(0));
 
         $program = $this->program->withEnv("PUBLIC", "yep")->withPrivateEnv("PRIVATE", "secret");
         $this->assertNotSame($this->program, $program);
@@ -179,16 +176,18 @@ class ProgramTest extends TestCase
             yield [$expected, $args];
         }
     }
+
+
     /**
      * @dataProvider argumentProvider
+     *
      * @param array<mixed> $args
      */
     public function testArguments(string $expected, array $args): void
     {
         $this->ignoreOutput();
 
-        CoreFunction::mock("exec")
-            ->with("ls {$expected} 2>&1", $this->mock([]), $this->mock(0));
+        CoreFunction::mock("exec")->with("ls {$expected} 2>&1", $this->mock([]), $this->mock(0));
 
         $this->program->exec(...$args);
 
@@ -201,8 +200,7 @@ class ProgramTest extends TestCase
     {
         $this->ignoreOutput();
 
-        CoreFunction::mock("exec")
-            ->with("ls 2>&1", $this->mock(["line1", "line2"]), $this->mock(0));
+        CoreFunction::mock("exec")->with("ls 2>&1", $this->mock(["line1", "line2"]), $this->mock(0));
 
         $result = $this->program->exec()->getLines();
         $this->assertSame(["line1", "line2"], $result);
@@ -213,8 +211,7 @@ class ProgramTest extends TestCase
     {
         $this->ignoreOutput();
 
-        CoreFunction::mock("exec")
-            ->with("ls 2>&1", $this->mock([]), $this->mock(14));
+        CoreFunction::mock("exec")->with("ls 2>&1", $this->mock([]), $this->mock(14));
 
         $this->expectException(ProgramException::class);
         $this->expectExceptionMessage("The ls command failed (exit code: 14)");

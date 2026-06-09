@@ -54,11 +54,13 @@ class ResultTest extends TestCase
         $this->assertSame("one", $result->getFirstLine());
     }
 
+
     public function testGetFirstLine2(): void
     {
         $result = new Result(0, []);
         $this->assertSame("", $result->getFirstLine());
     }
+
 
     public function testGetFirstLine3(): void
     {

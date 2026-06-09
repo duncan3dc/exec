@@ -9,6 +9,7 @@ final class File implements OutputInterface
      */
     private $file;
 
+
     /**
      * Create a new instance.
      *

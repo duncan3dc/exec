@@ -14,12 +14,14 @@ interface ResultInterface extends \Iterator, \Countable
      */
     public function getStatus(): int;
 
+
     /**
      * Get all the lines of the output.
      *
      * @return string[]
      */
     public function getLines(): array;
+
 
     /**
      * Get the first line of the output.
@@ -28,12 +30,14 @@ interface ResultInterface extends \Iterator, \Countable
      */
     public function getFirstLine(): string;
 
+
     /**
      * Get the last line of the output.
      *
      * @return string
      */
     public function getLastLine(): string;
+
 
     /**
      * Get all the output as a string

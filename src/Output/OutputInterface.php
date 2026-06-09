@@ -14,6 +14,7 @@ interface OutputInterface
      */
     public function command(string $command, string $color): void;
 
+
     /**
      * Output an environment variable.
      *
@@ -25,6 +26,7 @@ interface OutputInterface
      */
     public function env(string $key, string $value, string $color): void;
 
+
     /**
      * Output a line of the command's output.
      *
@@ -35,6 +37,7 @@ interface OutputInterface
      */
     public function output(string $line, string $color): void;
 
+
     /**
      * Output a line break.
      *
@@ -43,6 +46,7 @@ interface OutputInterface
      * @return void
      */
     public function break(string $color): void;
+
 
     /**
      * Output a marker to indicate the end the command's output.
