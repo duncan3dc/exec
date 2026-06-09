@@ -1,7 +1,9 @@
 ARG PHP_VERSION=7.3
 FROM php:${PHP_VERSION}-cli
 
-RUN pecl install uopz || pecl install uopz-6.1.2 && docker-php-ext-enable uopz
+COPY install-uopz.sh /tmp/
+RUN /tmp/install-uopz.sh
+RUN docker-php-ext-enable uopz
 RUN echo "uopz.exit=1" >> /usr/local/etc/php/conf.d/docker-php-ext-uopz.ini
 
 ARG COVERAGE
