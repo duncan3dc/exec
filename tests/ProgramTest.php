@@ -181,7 +181,7 @@ class ProgramTest extends TestCase
     /**
      * @dataProvider argumentProvider
      *
-     * @param array<mixed> $args
+     * @param array<string> $args
      */
     public function testArguments(string $expected, array $args): void
     {

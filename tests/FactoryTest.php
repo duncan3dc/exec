@@ -13,24 +13,6 @@ use PHPUnit\Framework\TestCase;
 
 class FactoryTest extends TestCase
 {
-    /**
-     * @var ProgramInterface|MockInterface $program A program instance to test with.
-     */
-    private $program;
-
-
-    /**
-     * @inheritdoc
-     */
-    protected function setUp(): void
-    {
-        $this->program = Mockery::mock(ProgramInterface::class);
-    }
-
-
-    /**
-     * @inheritdoc
-     */
     protected function tearDown(): void
     {
         Mockery::close();

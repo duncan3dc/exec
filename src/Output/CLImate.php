@@ -37,7 +37,8 @@ final class CLImate implements OutputInterface
      */
     public function env(string $key, string $value, string $color): void
     {
-        $this->climate->tab()->out("[{$key} = {$value}]");
+        $this->climate->tab();
+        $this->climate->out("[{$key} = {$value}]");
     }
 
 
