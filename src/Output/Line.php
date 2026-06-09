@@ -21,10 +21,10 @@ final class Line
     /**
      * Create a new instance.
      *
-     * @param string $character The character to use for the line
-     * @param int $length The length of the line to produce
+     * @param ?string $character The character to use for the line
+     * @param ?int $length The length of the line to produce
      */
-    public function __construct(string $character = null, int $length = null)
+    public function __construct(?string $character = null, ?int $length = null)
     {
         if ($character !== null) {
             if (mb_strlen($character) !== 1) {
